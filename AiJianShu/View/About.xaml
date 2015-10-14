@@ -16,9 +16,9 @@
             <TextBlock TextWrapping="Wrap">
                     <Run Text="作者:" FontFamily="Bold" FontSize="20"></Run>
                     <LineBreak/>
-                    <Hyperlink NavigateUri="https://github.com/youngytj/" UnderlineStyle="None" Foreground="Blue">youngytj</Hyperlink>
+                    <Hyperlink NavigateUri="https://github.com/youngytj/">youngytj</Hyperlink>
                     <LineBreak/>
-                    <Hyperlink NavigateUri="http://www.cnblogs.com/xiaochenpi/" UnderlineStyle="None" Foreground="Blue">洋芋</Hyperlink>
+                    <Hyperlink NavigateUri="http://www.cnblogs.com/xiaochenpi/">洋芋</Hyperlink>
                     <LineBreak/>
                     <LineBreak/>
                     <Run Text="免责声明:" FontFamily="Bold" FontSize="20"></Run>
@@ -29,6 +29,11 @@
                     <LineBreak/>
                     <LineBreak/>
                     <Run Text="交流QQ群：363437233。" FontSize="12"/>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run Text="开源地址:" FontFamily="Bold" FontSize="20"></Run>
+                    <LineBreak/>
+                    <Hyperlink NavigateUri="https://github.com/youngytj/uwp_AiJianShu" FontSize="12">程序源码</Hyperlink>
             </TextBlock>
         </DataTemplate>
         <DataTemplate x:Key="Setting">
