@@ -88,6 +88,13 @@ namespace AiJianShu.ViewModel
                 await QuerySubscription();
             }
         }
+
+        public override void Cleanup()
+        {
+            base.Cleanup();
+            subscriptionList = null;
+            pageIndex = 0;
+        }
         #endregion
 
         #region 私有方法

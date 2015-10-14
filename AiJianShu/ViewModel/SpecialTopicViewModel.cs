@@ -111,6 +111,14 @@ namespace AiJianShu.ViewModel
                 TypeSelectedItem = DisconverItems[0];
             }
         }
+
+        public override void Cleanup()
+        {
+            base.Cleanup();
+            TypeSelectedItem = null;
+            page = 0;
+            lastPage = 0;
+        }
         #endregion
 
         #region 私有方法

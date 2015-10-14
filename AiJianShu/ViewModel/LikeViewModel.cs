@@ -103,6 +103,16 @@ namespace AiJianShu.ViewModel
                 TypeSelectedItem = Items[0];
             }
         }
+
+        public override void Cleanup()
+        {
+            base.Cleanup();
+            TypeSelectedItem = null;
+            likeList = null;
+            markList = null;
+            likePage = 0;
+            markPage = 0;
+        }
         #endregion
 
         #region 构造函数

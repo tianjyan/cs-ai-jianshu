@@ -16,7 +16,6 @@ namespace AiJianShu.ViewModel
     {
         #region 字段
         private ObservableCollection<ActivityItem> activityResult;
-        private double verticalOffset;
         #endregion
 
         #region 属性
@@ -46,19 +45,6 @@ namespace AiJianShu.ViewModel
             }
         }
 
-        public double VerticalOffset
-        {
-            get
-            {
-                return verticalOffset;
-            }
-            set
-            {
-                verticalOffset = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public AsyncCommand RefreshCommand { get; set; }
         public AsyncCommand MoreCommand { get; set; }
         #endregion
@@ -77,6 +63,12 @@ namespace AiJianShu.ViewModel
             {
                 await QueryActivity();
             }
+        }
+
+        public override void Cleanup()
+        {
+            base.Cleanup();
+            activityResult = null;
         }
         #endregion
 

@@ -191,7 +191,6 @@
     <Content Include="Assets\default_avatar.png" />
     <Content Include="Assets\arrow.png" />
     <Content Include="Assets\logo.png" />
-    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />

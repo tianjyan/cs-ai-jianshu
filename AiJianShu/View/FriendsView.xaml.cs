@@ -5,7 +5,7 @@ namespace AiJianShu.View
 {
     public sealed partial class FriendsView : UserControl
     {
-        static double VerticalOffset;
+        internal static double VerticalOffset;
         public FriendsView()
         {
             this.InitializeComponent();

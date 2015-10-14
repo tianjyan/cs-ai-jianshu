@@ -301,6 +301,18 @@ namespace AiJianShu.ViewModel
 
                     Avatar = GlobalValue.DefaultAvatar;
                     IsLogin = false;
+
+                    homeViewModel.Cleanup();
+                    followViewModel.Cleanup();
+                    friendsViewModel.Cleanup();
+                    specialTopicViewModel.Cleanup();
+                    likeViewModel.Cleanup();
+                    userCenterViewModel.Cleanup();
+
+                    View.FriendsView.VerticalOffset = 0;
+                    View.SpecialTopicView.leftOffset = 0;
+                    View.SpecialTopicView.rightOffset = 0;
+                    View.SpecialTopicView.rightCanShow = false;
                     break;
                 default:
                     break;

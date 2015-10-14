@@ -16,9 +16,9 @@ namespace AiJianShu.View
         private const double MinListWidth = 320;
         private const double Offfset = 35;
         private object PreSelecteItem;
-        private static double leftOffset;
-        private static double rightOffset;
-        private static bool rightCanShow;
+        internal static double leftOffset;
+        internal static double rightOffset;
+        internal static bool rightCanShow;
         public SpecialTopicView()
         {
             this.InitializeComponent();
