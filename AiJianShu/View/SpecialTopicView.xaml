@@ -1,0 +1,86 @@
+﻿<UserControl
+    x:Class="AiJianShu.View.SpecialTopicView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AiJianShu.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Converter="using:AiJianShu.Converter"
+    xmlns:Property="using:AiJianShu.Common"
+    xmlns:my="using:AiJianShu.UserControls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    x:Name="Layoutroot">
+    <UserControl.Resources>
+        <Converter:ScrollVisbilityConverter x:Key="VisbilityConverter"/>
+        <Converter:MarginConverter x:Key="MarginConverter"/>
+        <Converter:FollowConverter x:Key="FollowConverter"/>
+        <Converter:CoeditorsToStringConverter x:Key="CoeditorsToStringConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" x:Name="RowDefinition1"/>
+            <RowDefinition Height="*" x:Name="RowDefinition2"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding ElementName=ContentColumnDefinition1, Path=Width}"/>
+            <ColumnDefinition Width="{Binding ElementName=ContentColumnDefinition2, Path=Width}"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="#D2CECD" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="149"/>
+                <ColumnDefinition Width="1"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Uid="Topic" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" FontSize="15"/>
+            <ComboBox HorizontalAlignment="Right" BorderThickness="0" ItemsSource="{Binding DisconverItems}" 
+                        Grid.Column="2" DisplayMemberPath="Content" Background="Transparent" SelectedItem="{Binding TypeSelectedItem, Mode=TwoWay}" 
+                        x:Name="cb_Item" VerticalAlignment="Center" Margin="{Binding DeviceFamily,Converter={StaticResource MarginConverter}}"/>
+            <Rectangle Height="40" Width="1" Fill="LightGray" Grid.Column="3"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="0" Background="#D2CECD" HorizontalAlignment="Stretch"/>
+        <Grid Grid.Column="1" Grid.Row="0" Background="#D2CECD" HorizontalAlignment="Stretch" Height="40" x:Name="ArticleGrid">
+            <Button Content="&#xE0A6;" HorizontalAlignment="Left" Click="BackButtonClick" x:Name="btn_Back" FontFamily="Segoe MDL2 Assets"  
+                    Height="40" Background="Transparent" Style="{StaticResource BackButtonStyle}"/>
+        </Grid>
+        <Grid Grid.Row="1" Name="Grid2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320" x:Name="ContentColumnDefinition1"/>
+                <ColumnDefinition Width="1" x:Name="SpaceColumn"/>
+                <ColumnDefinition Width="*" x:Name="ContentColumnDefinition2"/>
+            </Grid.ColumnDefinitions>
+            <my:PullToRefreshListView Background="White" ItemContainerStyle="{StaticResource ArticleItemStyle}"
+                ItemTemplate="{StaticResource SpecialTopicTemplate}" BorderBrush="LightGray" BorderThickness="1" ItemsSource="{Binding TopicItems,Mode=TwoWay}"
+                ScrollViewer.VerticalScrollBarVisibility="{Binding DeviceFamily,Converter={StaticResource VisbilityConverter}}" x:Name="Left"   
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Tapped="LeftSelectionChanged"
+                RefreshCommand="{Binding RefreshCommand}" MoreCommand="{Binding MoreCommand}"/>
+            <Border BorderThickness="1" BorderBrush="LightGray" Grid.Column="1"/>
+            <Grid Grid.Column="2" x:Name="Right" Opacity="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="6"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock TextWrapping="Wrap" Grid.Row="0" Grid.Column="0"  Margin="5">
+                    <Run Text="简介:" FontFamily="Bold" FontSize="18"/>
+                    <Run Text="{Binding SelectedItem.Description}"/>
+                </TextBlock>
+                <Button Grid.Row="0" Grid.Column="1" Content="{Binding SelectedItem.IsSubscribed, Converter={StaticResource FollowConverter}}"
+                        Style="{StaticResource FollowButtonStyle}" Height="40" HorizontalAlignment="Right" Width="80" VerticalAlignment="Top" Margin="5"
+                        Command="{Binding SubscriptionCommand}" CommandParameter="{Binding SelectedItem.Id}"/>
+                <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="1" Margin="0,5,0,0" Fill="LightGray" HorizontalAlignment="Stretch"/>
+                <my:PullToRefreshListView x:Name="rightLv" Background="White" Grid.Row="2" ItemContainerStyle="{StaticResource ArticleItemStyle}" Grid.ColumnSpan="2" Grid.Column="0"
+                ItemTemplate="{StaticResource NoteTemplate}" BorderBrush="LightGray" BorderThickness="1" ItemsSource="{Binding LastNotes}"
+                ScrollViewer.VerticalScrollBarVisibility="{Binding DeviceFamily,Converter={StaticResource VisbilityConverter}}"  
+                SelectionChanged="PullToRefreshListViewSelectionChanged"
+                RefreshCommand="{Binding RefreshNoteCommand}" MoreCommand="{Binding MoreNoteCommand}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,59 @@
+﻿<UserControl
+    x:Class="AiJianShu.View.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AiJianShu.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <DataTemplate x:Key="Intrdution">
+            <TextBlock TextWrapping="Wrap" Foreground="LightGray">
+            <Run Text="隐私说明:" FontSize="15" FontFamily="Bold"/>
+            <LineBreak/>
+            <LineBreak/>
+            <Run Text="爱简书UWP(下面简称应用)是基于Windows Universal Platform开发的简书第三方客户端。" FontSize="12"/>
+            <LineBreak/>
+            <LineBreak/>
+            <Run FontSize="12" Text=
+                 "应用的数据来源于简书官方。用户的登陆信息，会存放在微软的官方服务器上,用于不同设备之间的数据同步。我们并"/>
+            <Run FontSize="15" Text="不收集任何用户隐私信息" FontFamily="Bold"/>
+            <Run FontSize="12" Text="。我们也无法查看这些数据，这些数据与你的微软账号相关联。望知悉。"/>
+            <LineBreak/>
+            </TextBlock>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="180"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#D2CECD" HorizontalAlignment="Stretch">
+            <TextBlock x:Uid="Login2" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+        </Grid>
+        <Grid VerticalAlignment="Center" Grid.Row="1" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Source="ms-appx:///Assets/logo.png" Grid.Row="0"/>
+            <Grid Grid.Row="1" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBox Text="{Binding Username,Mode=TwoWay}" Width="200" BorderBrush="#6bd95b" BorderThickness="1" Grid.Row="0" x:Name="UserName"/>
+                <PasswordBox Name="pwd" Width="200" Margin="0,10" BorderBrush="#6bd95b" BorderThickness="1" Grid.Row="1"/>
+                <CheckBox x:Uid="Agree" x:Name="Agree" FontSize="13" Grid.Row="2"/>
+                <Button x:Uid="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=pwd,Path=Password}"  Grid.Row="3"
+                    Height="40" Width="200" Style="{StaticResource FollowButtonStyle}" HorizontalAlignment="Center" IsEnabled="{Binding ElementName=Agree,Path=IsChecked}"/>
+            </Grid>
+        </Grid>
+        <ContentControl ContentTemplate="{StaticResource Intrdution}" Grid.Row="2"  Margin="5"/>
+    </Grid>
+</UserControl>

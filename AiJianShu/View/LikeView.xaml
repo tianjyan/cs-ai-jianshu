@@ -1,0 +1,47 @@
+﻿<UserControl
+    x:Class="AiJianShu.View.LikeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AiJianShu.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Converter="using:AiJianShu.Converter"
+    xmlns:Property="using:AiJianShu.Common"
+    xmlns:my="using:AiJianShu.UserControls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    x:Name="Layoutroot">
+    <UserControl.Resources>
+        <Converter:ScrollVisbilityConverter x:Key="VisbilityConverter"/>
+        <Converter:BoolVisiblityConverter x:Key="BoolVisiblityConverter"/>
+        <Converter:MarginConverter x:Key="MarginConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" x:Name="RowDefinition1"/>
+            <RowDefinition Height="*" x:Name="RowDefinition2"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320" x:Name="ContentColumnDefinition1"/>
+            <ColumnDefinition Width="*" x:Name="ContentColumnDefinition2"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Background="#D2CECD" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="79"/>
+                <ColumnDefinition Width="1"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="1" ItemsSource="{Binding Items}" SelectedItem="{Binding TypeSelectedItem, Mode=TwoWay}" 
+                x:Name="cb_Item" HorizontalAlignment="Right" VerticalAlignment="Center"
+                      Background="Transparent" BorderThickness="0"/>
+            <Rectangle Height="40" Width="1" Fill="LightGray" Grid.Column="2"/>
+        </Grid>
+        <my:PullToRefreshListView Grid.Column="0" Grid.Row="1" Background="White" ItemContainerStyle="{StaticResource ArticleItemStyle}"
+                ItemTemplate="{StaticResource NoteTemplate}" BorderBrush="LightGray" BorderThickness="1" ItemsSource="{Binding DisplayCollection,Mode=TwoWay}"
+                ScrollViewer.VerticalScrollBarVisibility="{Binding DeviceFamily,Converter={StaticResource VisbilityConverter}}" x:Name="Left"   
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                RefreshCommand="{Binding RefreshCommand}" MoreCommand="{Binding MoreCommand}" Tapped="LeftSelectionChanged"/>
+        <my:ArticleControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" x:Name="ArticleContorl" Note="{Binding NoteDetail}" BackClick="BackButtonClick"/>
+    </Grid>
+</UserControl>

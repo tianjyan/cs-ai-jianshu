@@ -1,0 +1,39 @@
+﻿<UserControl
+    x:Class="AiJianShu.View.FollowView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AiJianShu.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="using:AiJianShu.UserControls"
+    xmlns:Converter="using:AiJianShu.Converter"
+    xmlns:Property="using:AiJianShu.Common"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    x:Name="Layoutroot">
+    <UserControl.Resources>
+        <Converter:ScrollVisbilityConverter x:Key="VisbilityConverter"/>
+        <Converter:BoolVisiblityConverter x:Key="BoolVisiblityConverter"/>
+        <Converter:MarginConverter x:Key="MarginConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource PanelTopHeight}"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320" x:Name="ContentColumnDefinition1"/>
+            <ColumnDefinition Width="*" x:Name="ContentColumnDefinition2"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Background="#D2CECD" HorizontalAlignment="Stretch">
+            <TextBlock x:Uid="Follow" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" FontSize="15"/>
+        </Grid>
+        <my:PullToRefreshListView Grid.Column="0" Grid.Row="1" Background="White" ItemContainerStyle="{StaticResource ArticleItemStyle}"
+            ItemTemplate="{StaticResource SubscribeNoteTemplate}" BorderBrush="LightGray" BorderThickness="1" ItemsSource="{Binding SubscriptionList,Mode=TwoWay}"
+            ScrollViewer.VerticalScrollBarVisibility="{Binding DeviceFamily,Converter={StaticResource VisbilityConverter}}" x:Name="Left"   
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+            RefreshCommand="{Binding RefreshCommand}" MoreCommand="{Binding MoreCommand}" Tapped="LeftSelectionChanged"/>
+        <my:ArticleControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" x:Name="ArticleContorl" Note="{Binding NoteDetail}" BackClick="BackButtonClick"/>
+    </Grid>
+</UserControl>

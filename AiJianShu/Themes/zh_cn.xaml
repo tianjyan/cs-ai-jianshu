@@ -1,0 +1,26 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <x:String x:Key="FollowUser">关注了作者</x:String>
+    <x:String x:Key="LikeNote">喜欢了文章</x:String>
+    <x:String x:Key="LikeNoteBook">关注了文集</x:String>
+    <x:String x:Key="LikeCollection">关注了专题</x:String>
+    <x:String x:Key="Comment">评论了文章</x:String>
+    <x:String x:Key="Created">加入简书</x:String>
+    <x:String x:Key="Note">发表了文章</x:String>
+    <x:String x:Key="UnFollow">取消关注</x:String>
+    <x:String x:Key="Follow">关注</x:String>
+    <x:String x:Key="ArticleCount">篇文章</x:String>
+    <x:String x:Key="FollowCount">人关注</x:String>
+    <x:String x:Key="Coeditors"> 编</x:String>
+    <x:String x:Key="LikeMessage">添加喜欢成功</x:String>
+    <x:String x:Key="UnlikeMessage">取消喜欢成功</x:String>
+    <x:String x:Key="ShareArticle">{0}分享了《{1}》via 爱简书UWP"</x:String>
+    <x:String x:Key="ShareSuccess">分享成功</x:String>
+    <x:String x:Key="ShareFail">分享失败</x:String>
+    <x:String x:Key="Pull">下拉</x:String>
+    <x:String x:Key="Release">释放</x:String>
+    <x:String x:Key="LoginExpire">登陆信息过期</x:String>
+    <x:String x:Key="ErrorCode_404">文章貌似没找到哦！可能被删啦~</x:String>
+</ResourceDictionary>

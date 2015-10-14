@@ -1,0 +1,198 @@
+﻿<UserControl
+    x:Class="AiJianShu.View.UserCenterView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AiJianShu.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:AiJianShu.Converter"
+    xmlns:my="using:AiJianShu.UserControls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    x:Name="Layoutroot">
+    <UserControl.Resources>
+        <converter:BoolVisiblityConverter x:Key="BoolVisiblityConverter"/>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource PanelTopHeight}"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#F0F0F0" >
+            <Button Content="&#xE0A6;" Click="BackViewClick" x:Name="btn_BackView" FontFamily="Segoe MDL2 Assets"  Height="35" Background="#F0F0F0" Style="{StaticResource BackButtonStyle}"
+                    Visibility="{Binding CanBack,Converter={StaticResource BoolVisiblityConverter}}"/>
+            <Button Content="&#xE0A6;" Click="BackClick" x:Name="btn_Back" FontFamily="Segoe MDL2 Assets"  Height="35" Background="#F0F0F0" Style="{StaticResource BackButtonStyle}"/>
+            <Button x:Name="button" x:Uid="Logout" HorizontalAlignment="Right"  Command="{Binding LogoutCommand}" Visibility="{Binding IsSelf,Converter={StaticResource BoolVisiblityConverter}}"
+                     Background="Red" Foreground="White" BorderThickness="0" VerticalAlignment="Stretch"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320" x:Name="ContentColumnDefinition1"/>
+                <ColumnDefinition Width="*" x:Name="ContentColumnDefinition2"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
+                <Grid x:Name="Left" BorderThickness="0,0,1,0" BorderBrush="LightGray" Grid.Column="0" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="240"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="130"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Ellipse  Width="60" Height="60">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding Avatar}"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="0"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
+                                <Button Background="Transparent" Click="RightClick" Tag="1" Style="{StaticResource UserCenterButtonStyle}">
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                        <TextBlock Text="{Binding FollowingCount}"  HorizontalAlignment="Center"/>
+                                        <TextBlock x:Uid="Following" Foreground="Gray"/>
+                                    </StackPanel>
+                                </Button>
+                                <Rectangle Fill="Gray" Width="1" Height="35" Margin="5,0"/>
+                                <Button Background="Transparent" Click="RightClick" Tag="2" Style="{StaticResource UserCenterButtonStyle}">
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                        <TextBlock Text="{Binding FollowerCount}"  HorizontalAlignment="Center"/>
+                                        <TextBlock x:Uid="Follower" Foreground="Gray"/>
+                                    </StackPanel>
+                                </Button>
+                                <Rectangle Fill="Gray" Width="1" Height="35" Margin="5,0"/>
+                                <Button Background="Transparent" Click="RightClick" Tag="3"  Style="{StaticResource UserCenterButtonStyle}">
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                        <TextBlock Text="{Binding SubscribingCount}"  HorizontalAlignment="Center"/>
+                                        <TextBlock x:Uid="Collection" Foreground="Gray"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                                <Button Background="Transparent"  Style="{StaticResource UserCenterButtonStyle}">
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                            <TextBlock Text="{Binding BookmarksCount}"  HorizontalAlignment="Center"/>
+                                            <TextBlock x:Uid="Bookmark" Foreground="Gray"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Button>
+                                <Rectangle Fill="Gray" Width="1" Height="35" Margin="5,0"/>
+                                <Button Background="Transparent"  Style="{StaticResource UserCenterButtonStyle}">
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                        <TextBlock Text="{Binding LikedNotesCount}"  HorizontalAlignment="Center"/>
+                                        <TextBlock x:Uid="Like" Foreground="Gray"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+                                <Button Background="Transparent"  Style="{StaticResource UserCenterButtonStyle}" IsEnabled="False">
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                        <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                            <TextBlock Text="{Binding TotalWordage}"  HorizontalAlignment="Center"/>
+                                            <TextBlock x:Uid="Wordage" Foreground="Gray"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Button>
+                                <Rectangle Fill="Gray" Width="1" Height="35" Margin="5,0"/>
+                                <Button Background="Transparent"  Style="{StaticResource UserCenterButtonStyle}" IsEnabled="False">
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                        <TextBlock Text="{Binding TotalLikesReceived}"  HorizontalAlignment="Center"/>
+                                        <TextBlock x:Uid="ReceivedLike" Foreground="Gray"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="LightGray" Margin="0,5,0,0">
+                        <StackPanel HorizontalAlignment="Left" Orientation="Vertical" Margin="5,0,0,0">
+                            <TextBlock x:Uid="OwnNotebook" FontSize="20"/>
+                            <my:PullToRefreshListView  ItemsSource="{Binding OwnNotebooks}" ItemContainerStyle="{StaticResource CollectionItemStyle}"
+                                RefreshCommand="{Binding RefreshCollectionCommand}" MoreCommand="{Binding MoreRefreshCollectionCommand}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </my:PullToRefreshListView>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+            <Grid Grid.Column="1" x:Name="Right1" x:DeferLoadStrategy="Lazy">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Style="{StaticResource TabRadioButtonStyle}" x:Uid="FollowingContent" Grid.Column="0" IsChecked="True" x:Name="RB1"/>
+                    <RadioButton Style="{StaticResource TabRadioButtonStyle}" x:Uid="FollowerContent" Grid.Column="1" x:Name="RB2"/>
+                    <RadioButton Style="{StaticResource TabRadioButtonStyle}" x:Uid="CollectionContent" Grid.Column="2" x:Name="RB3"/>
+                    <RadioButton Style="{StaticResource TabRadioButtonStyle}" Content=""  Grid.Column="3" IsEnabled="False" HorizontalAlignment="Stretch"/>
+                </Grid>
+                <my:PullToRefreshListView ItemsSource="{Binding  FollowingUsers}" Grid.Row="1"  HorizontalContentAlignment="Stretch"
+                          Visibility="{Binding ElementName=RB1,Path=IsChecked,Converter={StaticResource BoolVisiblityConverter}}"
+                          RefreshCommand="{Binding RefreshFollowingCommand}" MoreCommand="{Binding MoreFollowingCommnd}"
+                          ItemTemplate="{StaticResource FollowUserTemplate}" ItemContainerStyle="{StaticResource CommentItemStyle}">
+                </my:PullToRefreshListView>
+                <my:PullToRefreshListView ItemsSource="{Binding FollowerUsers}" Grid.Row="1"  HorizontalContentAlignment="Stretch"
+                          Visibility="{Binding ElementName=RB2,Path=IsChecked,Converter={StaticResource BoolVisiblityConverter}}"
+                          RefreshCommand="{Binding RefreshFollowCommmand}" MoreCommand="{Binding MoreFollowCommand}"
+                          ItemTemplate="{StaticResource FollowUserTemplate}" ItemContainerStyle="{StaticResource CommentItemStyle}">
+                </my:PullToRefreshListView>
+                <my:PullToRefreshListView ItemsSource="{Binding SubscriptionItems}" Grid.Row="1" HorizontalContentAlignment="Stretch" 
+                          ItemContainerStyle="{StaticResource CommentItemStyle}"
+                          RefreshCommand="{Binding RefreshSubscriptionsCommand}" MoreCommand="{Binding MoreRefreshSubscriptionsCommand}"
+                          Visibility="{Binding ElementName=RB3,Path=IsChecked,Converter={StaticResource BoolVisiblityConverter}}" 
+                          ItemTemplate="{StaticResource SubscriptionTemplate}">
+                </my:PullToRefreshListView>
+            </Grid>
+            <Grid Grid.Column="1" x:Name="Right2" x:DeferLoadStrategy="Lazy">
+                <Pivot x:Name="pivot">
+                    <PivotItem>
+                        <PivotItem.Header>
+                            <TextBlock x:Uid="Following" FontSize="18"/>
+                        </PivotItem.Header>
+                        <my:PullToRefreshListView ItemsSource="{Binding  FollowingUsers}" HorizontalContentAlignment="Stretch"
+                                RefreshCommand="{Binding RefreshFollowingCommand}" MoreCommand="{Binding MoreFollowingCommnd}"
+                                ItemTemplate="{StaticResource FollowUserTemplate}" ItemContainerStyle="{StaticResource CommentItemStyle}"/>
+                    </PivotItem>
+                    <PivotItem>
+                        <PivotItem.Header>
+                            <TextBlock x:Uid="Follower" FontSize="18"/>
+                        </PivotItem.Header>
+                        <my:PullToRefreshListView ItemsSource="{Binding FollowerUsers}"  HorizontalContentAlignment="Stretch"  
+                          RefreshCommand="{Binding RefreshFollowCommmand}" MoreCommand="{Binding MoreFollowCommand}"
+                          ItemTemplate="{StaticResource FollowUserTemplate}" ItemContainerStyle="{StaticResource CommentItemStyle}">
+                        </my:PullToRefreshListView>
+                    </PivotItem>
+                    <PivotItem>
+                        <PivotItem.Header>
+                            <TextBlock x:Uid="Collection" FontSize="18"/>
+                        </PivotItem.Header>
+                        <my:PullToRefreshListView ItemsSource="{Binding SubscriptionItems}" HorizontalContentAlignment="Stretch" 
+                          RefreshCommand="{Binding RefreshSubscriptionsCommand}" MoreCommand="{Binding MoreRefreshSubscriptionsCommand}"
+                          ItemContainerStyle="{StaticResource CommentItemStyle}"
+                          ItemTemplate="{StaticResource SubscriptionTemplate}"/>
+                    </PivotItem>
+                </Pivot>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

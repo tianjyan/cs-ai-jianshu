@@ -1,0 +1,137 @@
+﻿<Page
+    x:Class="AiJianShu.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AiJianShu"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Main, Source={StaticResource Locator}}"
+    xmlns:Converter="using:AiJianShu.Converter"
+    xmlns:us="using:AiJianShu.View"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Converter:CompactPaneLengthConverter x:Key="LengthConverter"/>
+        <Converter:BoolVisiblityConverter x:Key="BoolVisiblityConverter"/>
+        <Storyboard x:Name="ShowMessage">
+            <DoubleAnimation Duration="0:0:0.2" To="-200" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="MessageBorder" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="HiddenMessage">
+            <DoubleAnimation Duration="0:0:0.2" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="MessageBorder" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+    <Grid>
+        <SplitView x:Name="splitView" OpenPaneLength="150"  PaneClosed="SplitViewPaneClosed"
+                   CompactPaneLength="{Binding DeviceFamily, Converter={StaticResource LengthConverter}}" 
+                   PaneBackground="#2A2A2A" DisplayMode="CompactOverlay" Grid.Row="1">
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{StaticResource PanelTopHeight}" x:Name="RowDefinition1"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="150"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Row="1" Visibility="{Binding IsLogin, Converter={StaticResource BoolVisiblityConverter}}">
+                        <RadioButton  Command="{Binding HomeViewCommand}" Style="{StaticResource ImageRadiobutton}" 
+                                      GroupName="RDG" Height="45" 
+                                      HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets"  Foreground="White" Text="&#xE10F;" 
+                                           FontSize="20" Height="20" Margin="8,0,0,5"/>
+                                <TextBlock x:Uid="Home" Margin="20,0,0,0" FontSize="15"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton  Command="{Binding FollowViewCommand}"
+                                      Style="{StaticResource ImageRadiobutton}" GroupName="RDG" Height="45" 
+                                      HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets"  Foreground="White" Text="&#xE2AF;" 
+                                           FontSize="20" Height="20" Margin="8,0,0,5"/>
+                                <TextBlock x:Uid="Follow" Margin="20,0,0,0" FontSize="15"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource ImageRadiobutton}"
+                                     Command="{Binding SpecialTopicViewCommand}" GroupName="RDG" Height="45" 
+                                     HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                            <RadioButton.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets"  Foreground="White" Text="&#xE82D;" 
+                                               FontSize="20" Height="20" Margin="10,0,0,5"/>
+                                    <TextBlock x:Uid="Topic" Margin="18,0,0,0" FontSize="15"/>
+                                </StackPanel>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource ImageRadiobutton}" Command="{Binding FriendsViewCommand}" 
+                                     GroupName="RDG"  Height="45" 
+                                     HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                            <RadioButton.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="Segoe MDL2 Assets"  Foreground="White" Text="&#xE125;" 
+                                               FontSize="20" Height="20" Margin="10,0,0,5"/>
+                                    <TextBlock x:Uid="Friends" Margin="18,0,0,0" FontSize="15"/>
+                                </StackPanel>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Row="3" VerticalAlignment="Bottom">
+                        <Rectangle Height="1" Fill="Gray"/>
+                        <RadioButton Command="{Binding UserCenterViewCommand}" Style="{StaticResource ImageRadiobutton}" 
+                                     GroupName="RDG"  Height="45"  
+                                     Visibility="{Binding IsLogin, Converter={StaticResource BoolVisiblityConverter}}"
+                                     HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse  Width="20" Height="20" Margin="8,0,0,5">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding Avatar}"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock x:Uid="Me" Margin="20,0,0,0" FontSize="15"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton Command="{Binding LikeViewCommand}" Visibility="{Binding IsLogin, Converter={StaticResource BoolVisiblityConverter}}"
+                                     Style="{StaticResource ImageRadiobutton}" GroupName="RDG"  Height="45" 
+                                     HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets"  Foreground="White" Text="&#xE006;" 
+                                           FontSize="20" Height="20" Margin="8,0,0,5"/>
+                                <TextBlock x:Uid="Like" Margin="20,0,0,0" FontSize="15"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton Command="{Binding AboutViewCommand}" Style="{StaticResource ImageRadiobutton}" GroupName="RDG"  Height="45"  
+                                     HorizontalAlignment="Stretch" VerticalContentAlignment="Center" Visibility="{Binding IsLogin, Converter={StaticResource BoolVisiblityConverter}}"> 
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets"  Foreground="White" Text="&#xE115;" 
+                                           FontSize="20" Height="20" Margin="8,0,0,5"/>
+                                <TextBlock x:Uid="Setting" Margin="20,0,0,0" FontSize="15"/>
+                            </StackPanel>
+                        </RadioButton>
+                    </StackPanel>
+                </Grid>
+            </SplitView.Pane>
+            <ContentControl Content="{Binding CurrentViewModel}" ContentTemplate="{Binding Path=CurrentTemplate}" 
+                            HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        </SplitView>
+        <Border  x:Name="MessageBorder" MinHeight="40" Grid.Row="1" HorizontalAlignment="Right" Width="200" Margin="0,20,-200,0"  VerticalAlignment="Top" Background="#E9967A">
+            <Border.RenderTransform>
+                <CompositeTransform/>
+            </Border.RenderTransform>
+            <TextBlock  Text="Message" TextWrapping="Wrap" TextAlignment="Justify" x:Name="MessageText" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+        </Border>
+        <Button BorderThickness="0" Background="#E9967A" Click="OnClick" HorizontalAlignment="Left" VerticalAlignment="Top"
+             x:Name="PanelButton" Height="40" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                Style="{StaticResource NoEffectButton}">
+            <Button.Content>
+                <TextBlock Text="&#xE700;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="White"/>
+            </Button.Content>
+        </Button>
+        <ProgressBar IsIndeterminate="True" Height="10" Visibility="{Binding ProgressVisible}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Foreground="LightSalmon"/>
+    </Grid>
+</Page>
