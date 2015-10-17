@@ -28,12 +28,12 @@
                     <Run Text="如果应用侵犯了你的权益，请联系QQ：23937914。" FontSize="12"/>
                     <LineBreak/>
                     <LineBreak/>
-                    <Run Text="交流QQ群：363437233。" FontSize="12"/>
-                    <LineBreak/>
-                    <LineBreak/>
                     <Run Text="开源地址:" FontFamily="Bold" FontSize="20"></Run>
                     <LineBreak/>
                     <Hyperlink NavigateUri="https://github.com/youngytj/uwp_AiJianShu" FontSize="12">程序源码</Hyperlink>
+                    <Run Text="更多说明:" FontFamily="Bold" FontSize="20"></Run>
+                    <LineBreak/>
+                    <Run Text="此程序只是一个简单的演示。如果你想使用简书相关的服务，请下载官方客户端。"/>
             </TextBlock>
         </DataTemplate>
         <DataTemplate x:Key="Setting">
