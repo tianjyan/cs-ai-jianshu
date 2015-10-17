@@ -89,7 +89,10 @@ namespace AiJianShu.ViewModel
             set
             {
                 typeSelectedItem = value;
-                Refresh();
+                if (typeSelectedItem == null)
+                {
+                    Refresh();
+                }
                 RaisePropertyChanged();
             }
         }

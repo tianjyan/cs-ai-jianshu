@@ -302,6 +302,8 @@ namespace AiJianShu.ViewModel
                     Avatar = GlobalValue.DefaultAvatar;
                     IsLogin = false;
 
+                    WebContentProvider.CancelPendingRequests();
+
                     homeViewModel.Cleanup();
                     followViewModel.Cleanup();
                     friendsViewModel.Cleanup();

@@ -74,7 +74,10 @@ namespace AiJianShu.ViewModel
             {
                 typeSelectedItem = value;
                 pageIndex = 0;
-                QueryTrending(value);
+                if (typeSelectedItem != null)
+                {
+                    QueryTrending(value);
+                }
                 RaisePropertyChanged();
             }
         } 

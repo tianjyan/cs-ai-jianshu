@@ -41,6 +41,11 @@ namespace JianShuCore.Provider
                 throw new HttpRequestException("Seems unable to connect to the network.");
             }
         }
+
+        public static void CancelPendingRequests()
+        {
+            httpClient.CancelPendingRequests();
+        }
         #endregion
 
         /// <summary>

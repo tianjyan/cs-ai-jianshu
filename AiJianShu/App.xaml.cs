@@ -52,7 +52,12 @@ namespace AiJianShu
                     await new MessageDialog(App.Current.Resources["ErrorCode_404"].ToString()).ShowAsync();
                 });
             }
-            else {
+            else if(e.Exception.Message.Contains("A task was canceled"))
+            {
+
+            }
+            else
+            {
                 await GalaSoft.MvvmLight.Threading.DispatcherHelper.RunAsync(async () => {
                     await new MessageDialog("异步线程出错:\r\n" + e.Exception.Message).ShowAsync();
                 });

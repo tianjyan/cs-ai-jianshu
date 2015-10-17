@@ -22,5 +22,5 @@
     <x:String x:Key="Pull">下拉</x:String>
     <x:String x:Key="Release">释放</x:String>
     <x:String x:Key="LoginExpire">登陆信息过期</x:String>
-    <x:String x:Key="ErrorCode_404">文章貌似没找到哦！可能被删啦~</x:String>
+    <x:String x:Key="ErrorCode_404">未找到文章</x:String>
 </ResourceDictionary>

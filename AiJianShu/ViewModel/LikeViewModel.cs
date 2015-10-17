@@ -56,7 +56,10 @@ namespace AiJianShu.ViewModel
             set
             {
                 typeSelectedItem = value;
-                TypeSelectedItemChanged(value);
+                if (typeSelectedItem != null)
+                {
+                    TypeSelectedItemChanged(value);
+                }
                 RaisePropertyChanged();
             }
         }

@@ -31,6 +31,7 @@
                     <Run Text="开源地址:" FontFamily="Bold" FontSize="20"></Run>
                     <LineBreak/>
                     <Hyperlink NavigateUri="https://github.com/youngytj/uwp_AiJianShu" FontSize="12">程序源码</Hyperlink>
+                    <LineBreak/>
                     <Run Text="更多说明:" FontFamily="Bold" FontSize="20"></Run>
                     <LineBreak/>
                     <Run Text="此程序只是一个简单的演示。如果你想使用简书相关的服务，请下载官方客户端。"/>
