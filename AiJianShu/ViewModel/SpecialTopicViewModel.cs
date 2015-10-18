@@ -86,10 +86,11 @@ namespace AiJianShu.ViewModel
             {
                 return typeSelectedItem;
             }
+
             set
             {
                 typeSelectedItem = value;
-                if (typeSelectedItem == null)
+                if (typeSelectedItem != null)
                 {
                     Refresh();
                 }
