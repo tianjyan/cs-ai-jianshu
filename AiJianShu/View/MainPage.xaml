@@ -27,7 +27,7 @@
             </DoubleAnimation>
         </Storyboard>
     </Page.Resources>
-    <Grid>
+    <Grid Background="White">
         <SplitView x:Name="splitView" OpenPaneLength="150"  PaneClosed="SplitViewPaneClosed"
                    CompactPaneLength="{Binding DeviceFamily, Converter={StaticResource LengthConverter}}" 
                    PaneBackground="#2A2A2A" DisplayMode="CompactOverlay" Grid.Row="1">
