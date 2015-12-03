@@ -114,6 +114,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeChat\Config.cs" />
+    <Compile Include="WeChat\WechatClient.cs" />
     <Compile Include="Weibo\Config.cs" />
     <Compile Include="Weibo\Model\AppInfo.cs" />
     <Compile Include="Weibo\Model\ShareResultBase.cs" />
@@ -126,6 +128,9 @@
     <Content Include="Properties\SocialShare.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Google.ProtocolBuffersLite">
+      <HintPath>..\Assemblies\Google.ProtocolBuffersLite.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\Projects\AiJianShu\Assemblies\Newtonsoft.Json.dll</HintPath>
     </Reference>
