@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "Google.ProtocolBuffersLite": "2.4.1.555",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2"
   },
   "frameworks": {
     "uap10.0": {}

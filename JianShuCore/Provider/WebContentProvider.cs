@@ -190,7 +190,7 @@ namespace JianShuCore.Provider
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             MD5CryptoProvider md5Crypto = new MD5CryptoProvider();
             string timeStamp = string.Concat(GetSystemCurrentTimeSeconds());
-            byte[] data = md5Crypto.ComputeHash(Encoding.UTF8.GetBytes("be7db80162cce75a11eb280bd75b961d" + timeStamp));
+            byte[] data = md5Crypto.ComputeHash(Encoding.UTF8.GetBytes("5c7ade4876ed26f839357948c5cc8051" + timeStamp));
             string text = md5Crypto.HashToString(data);
 
             dictionary.Add("X-Timestamp", timeStamp);

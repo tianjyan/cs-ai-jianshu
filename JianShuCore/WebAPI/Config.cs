@@ -4,7 +4,7 @@
     {
         private const string Server = "http://api.jianshu.io/v1";
 
-        internal const string APP_VERSION = "1.6.2";
+        internal const string APP_VERSION = "1.9.1";
 
         internal const string APP_NAME = "haruki";
 
