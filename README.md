@@ -1,9 +1,9 @@
 一个[简书](http://www.jianshu.com/)的Universal Windows Platform的客户端，仅供学习和研究。
 
 # 开发环境
-Visual Studio 2015
-Universal Windows SDK 10240
-Windows 10 10240
+Visual Studio 2015  
+Universal Windows SDK 10240  
+Windows 10 10240  
 
 # 如何使用
 * 安装lib下的sqlite-uwp-3130000.vsix文件(sha1: eb3b6b66c8be1e9fab5f7d08fa90421a179bddcb)
